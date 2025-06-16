@@ -45,13 +45,16 @@ export class WebSocketService {
 
     this.socket.onopen = () => {
       const subscribeMessage = {
-        type: 'l1-subscription',
-        id: '1',
-        instrumentId,
-        provider,
-        subscribe: true,
-        kinds: ['ask', 'bid', 'last'],
-        token: this.currentToken
+        event: 'l1-subscription',
+        data: {
+          type: 'l1-subscription',
+          id: '1',
+          instrumentId: this.currentInstrumentId,
+          provider: 'oanda',
+          subscribe: true,
+          kinds: ['ask', 'bid', 'last'],
+          token: this.currentToken
+        }
       };
       this.send(subscribeMessage);
     };
