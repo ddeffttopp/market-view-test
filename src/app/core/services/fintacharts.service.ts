@@ -8,7 +8,7 @@ import { TimeUnit } from 'chart.js';
   providedIn: 'root'
 })
 export class FintachartsService {
-  private readonly BASE_URL = 'https://platform.fintacharts.com';
+  private readonly BASE_URL = 'https://market-view-back.onrender.com';
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +32,7 @@ export class FintachartsService {
       .set('periodicity', periodicity)
       .set('barsCount', barsCount.toString());
 
-    const url = `${this.BASE_URL}/api/bars/v1/bars/count-back`;
+    const url = `${this.BASE_URL}/bars/count-back`;
 
     return this.http.get<FintachartsBarsResponse>(url, { headers, params });
   }

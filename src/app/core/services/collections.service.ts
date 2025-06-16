@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CollectionsService {
-  private apiUrl = '/api/api/instruments/v1/instruments?provider=oanda&kind=forex';
+  private apiUrl = 'https://market-view-back.onrender.com/instruments?provider=oanda&kind=forex';
 
   constructor(
     private http: HttpClient,

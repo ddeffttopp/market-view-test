@@ -29,7 +29,7 @@ export class WebSocketService {
 
     this.currentInstrumentId = instrumentId;
 
-    const url = `wss://platform.fintacharts.com/api/streaming/ws/v1/realtime?token=${token}`;
+    const url = 'wss://market-view-back.onrender.com/ws';
     this.socket = new WebSocket(url);
 
     this.initSocketHandlers(this.currentInstrumentId, provider)

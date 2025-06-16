@@ -49,6 +49,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "baseHref": "https://ddeffttopp.github.io/market-view-test/",
               "outputHashing": "all"
             },
             "development": {

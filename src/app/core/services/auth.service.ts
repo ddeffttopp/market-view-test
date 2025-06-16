@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private authUrl = '/api/identity/realms/fintatech/protocol/openid-connect/token';
+  private authUrl = 'https://market-view-back.onrender.com';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class AuthService {
 
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-    return this.http.post(this.authUrl, body, { headers }).pipe(
+    return this.http.post(`${this.authUrl}/auth/login`, body, { headers }).pipe(
       tap((res: any) => {
         localStorage.setItem('access_token', res.access_token);
         localStorage.setItem('refresh_token', res.refresh_token);
