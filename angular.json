@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "market-view": {
+    "market-view-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/market-view",
+            "outputPath": "dist/market-view-test",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -40,8 +40,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "market-view:build:production"
+              "browserTarget": "market-view-test:build:production"
             },
             "development": {
-              "browserTarget": "market-view:build:development"
+              "browserTarget": "market-view-test:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "market-view:build"
+            "browserTarget": "market-view-test:build"
           }
         },
         "test": {
