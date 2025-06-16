@@ -3,7 +3,7 @@ import { AuthService } from './core/services/auth.service';
 import { CollectionsService } from './core/services/collections.service';
 import { ApiResponse, CollectionData } from './core/interface/collections.interface';
 import { WebSocketService } from './core/services/web-socket.service';
-import { takeUntil } from 'rxjs';
+import { takeUntil, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
