@@ -1,0 +1,18 @@
+<div class="price-details__container">
+  <p class="price-details__title">Market data:</p>
+
+  <div class="price-details__content">
+    <div class="item">
+      <p>Symbol:</p>
+      <p>{{ symbol }}</p>
+    </div>
+    <div class="item">
+      <p>Price:</p>
+      <p>{{ price }}</p>
+    </div>
+    <div class="item">
+      <p>Time:</p>
+      <p>{{ time | date:'MMM d, h:mm a' }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="selector-container">
+  <mat-form-field
+    appearance="outline"
+    class="selector-container__select"
+  >
+    <mat-select [formControl]="selectedSymbolControl">
+      <mat-option *ngFor="let instrument of collections" [value]="instrument.symbol">
+        {{ instrument.symbol }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    class="selector-container__submit"
+    (click)="changeSymbol()"
+  >Subscribe</button>
+</div>

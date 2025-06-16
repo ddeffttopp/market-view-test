@@ -1,0 +1,17 @@
+<div class="chart-wrapper">
+  <div class="controls">
+    <label for="periodicitySelect">Periodicity:</label>
+    <select id="periodicitySelect" (change)="onPeriodicityChange($event)">
+      <option value="minute" selected>Minute</option>
+      <option value="hour">Hour</option>
+      <option value="day">Day</option>
+      <option value="week">Week</option>
+      <option value="month">Month</option>
+      <option value="year">Year</option>
+    </select>
+  </div>
+
+  <div class="chart-container">
+    <canvas #priceChartCanvas></canvas>
+  </div>
+</div>

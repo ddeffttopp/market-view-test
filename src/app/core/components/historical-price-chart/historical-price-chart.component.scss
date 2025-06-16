@@ -1,0 +1,48 @@
+/* historical-price-chart.component.scss */
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, .54);
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 250px;
+}
+
+.chart-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+  height: 100%;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.controls label {
+  font-weight: bold;
+  color: #333;
+}
+
+.controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

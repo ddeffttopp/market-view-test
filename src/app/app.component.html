@@ -1,0 +1,16 @@
+<div class="container">
+  <app-currency-selector
+    [collections]="collectionsData"
+    (symbolSelected)="connectToInstrument($event)"
+  ></app-currency-selector>
+
+  <app-price-details
+    [symbol]="currentSymbol"
+    [price]="currentPrice"
+    [time]="currentTime"
+  ></app-price-details>
+
+  <app-historical-price-chart
+    [instrumentId]="selectedInstrumentIdForChart"
+  ></app-historical-price-chart>
+</div>
