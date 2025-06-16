@@ -19,11 +19,11 @@ export class WebSocketService {
       return;
     }
 
-    if (this.socket && this.socket.readyState === WebSocket.OPEN && this.currentInstrumentId === instrumentId) {
+    if (this.socket && this.isSocketOpen && this.currentInstrumentId === instrumentId) {
       return;
     }
 
-    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+    if (this.socket && this.isSocketOpen) {
       this.socket.close();
       this.socket = null;
     }
@@ -35,6 +35,10 @@ export class WebSocketService {
     this.socket = new WebSocket(url);
 
     this.initSocketHandlers(this.currentInstrumentId, provider)
+  }
+
+  public get isSocketOpen(): boolean {
+    return this.socket !== null && this.socket.readyState === WebSocket.OPEN;
   }
 
   private initSocketHandlers(instrumentId: string, provider: string) {
@@ -83,7 +87,7 @@ export class WebSocketService {
   }
 
   private send(message: any): void {
-    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+    if (this.socket && this.isSocketOpen) {
       this.socket.send(JSON.stringify(message));
     } else {
       console.warn('[WebSocket] Unable to send message: socket not open.');

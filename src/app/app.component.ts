@@ -3,6 +3,7 @@ import { AuthService } from './core/services/auth.service';
 import { CollectionsService } from './core/services/collections.service';
 import { ApiResponse, CollectionData } from './core/interface/collections.interface';
 import { WebSocketService } from './core/services/web-socket.service';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   currentSymbol: string | null = null;
   currentPrice: number | null = null;
   currentTime: string | null = null;
+  private destroy$ = new Subject<void>();
 
   selectedInstrumentIdForChart: string | undefined;
   userAuthTokenForChart: string | undefined;
@@ -39,7 +41,9 @@ export class AppComponent implements OnInit, OnDestroy {
       error: (err) => console.error('Login error:', err)
     });
 
-    this.wsService.price$.subscribe({
+    this.wsService.price$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
       next: ({ price, time, instrumentId }) => {
         if (this.selectedInstrumentIdForChart && instrumentId === this.selectedInstrumentIdForChart) {
           this.currentPrice = price;
@@ -74,5 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.wsService.disconnect();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

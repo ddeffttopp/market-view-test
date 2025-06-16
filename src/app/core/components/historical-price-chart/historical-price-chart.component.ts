@@ -18,7 +18,6 @@ import { CandlestickController, CandlestickElement } from 'chartjs-chart-financi
 
 import 'chartjs-adapter-luxon';
 import { Subscription, Subject, filter } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 Chart.register(...registerables);
 Chart.register(CandlestickController, CandlestickElement);
@@ -63,7 +62,7 @@ export class HistoricalPriceChartComponent implements OnInit, AfterViewInit, OnD
   private _initialPeriodicity: TimeUnit = 'minute';
   @Input()
   set initialPeriodicity(value: TimeUnit) {
-    const previousValue = this._initialPeriodicity;
+    const previousValue = this.initialPeriodicity;
     this._initialPeriodicity = value;
 
     if (value !== previousValue) {
@@ -89,7 +88,7 @@ export class HistoricalPriceChartComponent implements OnInit, AfterViewInit, OnD
   ) { }
 
   ngOnInit(): void {
-    this._currentPeriodicity = this._initialPeriodicity;
+    this._currentPeriodicity = this.initialPeriodicity;
   }
 
   ngAfterViewInit(): void {
@@ -194,7 +193,6 @@ export class HistoricalPriceChartComponent implements OnInit, AfterViewInit, OnD
     if (!this.wsPriceSubscription) {
       this.wsPriceSubscription = this.wsService.price$
         .pipe(
-          takeUntil(this.destroy$),
           filter((update: { price: number; time: string; instrumentId: string }) => update.instrumentId === instrumentId),
         )
         .subscribe({
@@ -345,7 +343,7 @@ export class HistoricalPriceChartComponent implements OnInit, AfterViewInit, OnD
 
     const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
     if (this.myChart && this.myChart.options.scales?.['x'] && (this.myChart.options.scales?.['x'] as TimeScaleOptions).title) {
-      (this.myChart.options.scales?.['x'] as TimeScaleOptions).title!.text = `Время (${selectedOptionText})`;
+      (this.myChart.options.scales?.['x'] as TimeScaleOptions).title!.text = `Time (${selectedOptionText})`;
     }
   }
 
