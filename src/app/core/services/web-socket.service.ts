@@ -10,6 +10,7 @@ export class WebSocketService {
   public price$ = this.priceSubject.asObservable();
 
   private currentInstrumentId: string | null = null;
+  private currentToken: string | null = null;
 
   connect(instrumentId: string, provider: string = 'oanda'): void {
     const token = localStorage.getItem('access_token');
@@ -28,6 +29,7 @@ export class WebSocketService {
     }
 
     this.currentInstrumentId = instrumentId;
+    this.currentToken = token;
 
     const url = 'wss://market-view-back.onrender.com/ws';
     this.socket = new WebSocket(url);
@@ -48,7 +50,8 @@ export class WebSocketService {
         instrumentId,
         provider,
         subscribe: true,
-        kinds: ['ask', 'bid', 'last']
+        kinds: ['ask', 'bid', 'last'],
+        token: this.currentToken
       };
       this.send(subscribeMessage);
     };
